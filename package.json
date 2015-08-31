@@ -1,0 +1,9 @@
+{
+  "directories": {
+    "lib": "lib"
+  },
+  "main": "bulk.js",
+  "format": "es6",
+  "registry": "jspm",
+  "dependencies": {}
+}
