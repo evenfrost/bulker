@@ -3,7 +3,7 @@
 Query a set of HTML elements and perform bulk manipulations with it.
 
 ### Example
-Pass any number of arguments to `bulk`. Any combination or `NodeList` or `HTMLElement` is acceptable (including deeply nested arrays), other entities will be ignored.
+Pass any number of arguments to `bulk`. Any combination of `NodeList`, `HTMLElement` or a selector string is acceptable (including deeply nested arrays), other entities will be ignored.
 ```html
 <body>
 
