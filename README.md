@@ -31,7 +31,7 @@ import bulk from 'bulk';
 // specify HTMLElement or/and NodeList in any combinations
 bulk(document.querySelector('body'), document.querySelectorAll('div'), [document.querySelectorAll('span')])
 // or provide selector string(s)
-bulk('.element', '#another', ['[data-foo="bar"]', 'footer'])
+bulk('section > span', 'div, h1', ['input', 'button'])
 ```
 
 ### Installation and usage
