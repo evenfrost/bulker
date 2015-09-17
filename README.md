@@ -25,13 +25,17 @@ Pass any number of arguments to `bulk`. Any combination of `NodeList`, `HTMLElem
 
 </body>
 ```
+Syntax is `bulk(arguments)`, any number of `string` or `array` arguments is accepted. 
 ```javascript
 import bulk from 'bulk';
 
-// specify HTMLElement or/and NodeList in any combinations
+// specify HTMLElement or/and NodeList
 bulk(document.querySelector('body'), document.querySelectorAll('div'), [document.querySelectorAll('span')])
-// or provide selector string(s)
+// or provide selector string(s) straight away
 bulk('section > span', 'div, h1', ['input', 'button'])
+// methods are chainable
+bulk('span').set('textContent', 'xyz').get('textContent');
+// the sample above sets text of <span>s to 'xyz'and returns ['xyz', 'xyz', 'xyz'] as result
 ```
 
 ### Installation and usage
@@ -70,9 +74,7 @@ bulk('div').set('textContent', 'Chunk');
 #### call
 Calls a DOM method for each element in bulk (if such method exists).
 ```javascript
-bulk('button').on('click', event => {
-  bulk('div').call('insertAdjacentHTML', 'beforeend', '<span>I am inserted into each of three divs.</span>');
-});
+bulk('div').call('insertAdjacentHTML', 'beforeend', '<span>I am inserted into each of three divs.</span>');
 
 // puts a <span> in all <div>s 
 ```
