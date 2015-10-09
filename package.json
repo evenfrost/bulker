@@ -1,4 +1,6 @@
 {
+  "name": "bulk",
+  "version": "0.0.2",
   "directories": {
     "lib": "lib"
   },
