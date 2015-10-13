@@ -68,7 +68,7 @@ bulk('h1').get('textContent');
 // returns 'A header'
 ```
 
-#### set(*property*, *)
+#### set(*property*, *value*)
 Sets a property for each element in bulk (if such property exists).
 ```javascript
 bulk('.chunk').set('textContent', 'Chunk');
