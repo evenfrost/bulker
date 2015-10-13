@@ -16,7 +16,7 @@ bulk('.foo', document.querySelectorAll('.bar'), document.getElementById('baz'))
   .get('firstElementChild');
 ```
 
-### Installation and Usage
+## Installation and Usage
 Install with jspm:
 ```sh
 jspm install bulk=github:evenfrost/bulk
@@ -35,7 +35,7 @@ import bulk from 'bulk';
 
 Pass arguments to `bulk`. Any combination of simple selector string, `NodeList`, `HTMLElement` or `bulk` instance itself is acceptable (including deeply nested arrays), other entities will be ignored.
 
-### Methods
+## Methods
 ```html
 <!-- test dummy -->
 <body>
