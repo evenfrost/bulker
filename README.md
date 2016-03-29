@@ -1,46 +1,11 @@
-# bulk
+# bulker
 
 Query a set of HTML elements and perform bulk manipulations with it.
 
-## Example
-```javascript
-// select elements with 'foo' and 'bar' classes and 'baz' id 
-bulk('.foo', document.querySelectorAll('.bar'), document.getElementById('baz'))
-  // set bulk elements text content to 'bulked!'
-  .set('textContent', 'bulked!')
-  // add click listener to each of bulk elements
-  .call('addEventListener', 'click', event => console.log(event.currentTarget))
-  // insert new div element in each of bulk elements
-  .call('insertAdjacentHTML', 'afterbegin', '<div></div>')
-  // return first childs of bulk elements as an array
-  .get('firstElementChild');
-```
-
-## Installation and Usage
-Install with jspm:
-```sh
-jspm install bulk=github:evenfrost/bulk
-```
-Or with npm:
-```sh
-npm install https://github.com/evenfrost/bulk
-```
-If using with browserify, you will need some sort of [transformer](https://github.com/babel/babelify) as the package is written in ES6. Or just use [jspm](https://github.com/jspm/jspm-cli) instead.
-
-And then use in code:
-```javascript
-import bulk from 'bulk';
-// ready to bulk()
-```
-
-Pass arguments to `bulk`. Any combination of simple selector string, `NodeList`, `HTMLElement` or `bulk` instance itself is acceptable (including deeply nested arrays), other entities will be ignored.
-
-## Methods
+### Example
+Pass any number of arguments to `bulker`. Any combination of `NodeList`, `HTMLElement` or a selector string is acceptable (including deeply nested arrays), other entities will be ignored.
 ```html
-<!-- test dummy -->
 <body>
-
-  <h1>A header</h1>
 
   <section>
     <span>One</span>
@@ -48,9 +13,11 @@ Pass arguments to `bulk`. Any combination of simple selector string, `NodeList`,
     <span>Three</span>
   </section>
 
-  <div class="chunk">First chunk</div>
-  <div class="chunk">Second chunk</div>
-  <div class="chunk">Third chunk</div>
+  <div>First chunk</div>
+  <div>Second chunk</div>
+  <div>Third chunk</div>
+
+  <h1>A header</h1>
 
   <input>
 
@@ -58,43 +25,70 @@ Pass arguments to `bulk`. Any combination of simple selector string, `NodeList`,
 
 </body>
 ```
+Syntax is `bulker(arguments)`, any number of `string` or `array` arguments is accepted.
+```javascript
+import bulker from 'bulker';
 
-#### get(*property*)
+// specify HTMLElement or/and NodeList
+bulker(document.querySelector('body'), document.querySelectorAll('div'), [document.querySelectorAll('span')])
+// or provide selector string(s) straight away
+bulker('section > span', 'div, h1', ['input', 'button'])
+// methods are chainable
+bulker('span').set('textContent', 'xyz').get('textContent');
+// the sample above sets text of <span>s to 'xyz'and returns ['xyz', 'xyz', 'xyz'] as result
+```
+
+### Installation and usage
+bulker currently can be installed via [jspm](http://jspm.io/) only.
+
+Run
+```sh
+jspm install bulker=github:evenfrost/bulker
+```
+and then use in code:
+```javascript
+import bulker from 'bulker';
+// bulker() is ready
+```
+
+### Methods
+All methods are run on the html sample from [Example](#example) section.
+
+#### get
 Gets any property of elements in bulk and returns them as an array.
 ```javascript
-bulk('.chunk').get('textContent');
+bulker('div').get('textContent');
 // returns ['First chunk', 'Second chunk', 'Third chunk']
-bulk('h1').get('textContent');
+bulker('h1').get('textContent');
 // returns 'A header'
 ```
 
-#### set(*property*, *value*)
+#### set
 Sets a property for each element in bulk (if such property exists).
 ```javascript
-bulk('.chunk').set('textContent', 'Chunk');
-// puts 'Chunk' text in all <div class="chunk"></div> 
+bulker('div').set('textContent', 'Chunk');
+
+// puts 'Chunk' text in all <div>s
 ```
 
-#### call(*method*, *...arguments*)
+#### call
 Calls a DOM method for each element in bulk (if such method exists).
 ```javascript
-bulk('.chunk').call('insertAdjacentHTML', 'beforeend', '<span>I am inserted into each of three divs.</span>');
-// puts a <span> in all <div>s 
+bulker('div').call('insertAdjacentHTML', 'beforeend', '<span>I am inserted into each of three divs.</span>');
+
+// puts a <span> in all <div>s
 ```
 
-#### on(*event*, *listener*)
-Adds a listener on each element in bulk. 
+#### on
+Adds a listener on each element in bulk.
 ```javascript
-bulk('input').on('input', event => bulk('.chunk').set('textContent', event.target.value));
+bulker('input').on('input', event => bulker('div').set('textContent', event.target.value));
 
 // updates text in <div>s when typing in <input> field
 ```
 
-#### off(*event*, *listener*)
-Removes a listener from each element in bulk. 
+#### off
+Removes a listener from each element in bulk.
 ```javascript
-bulk('input').off('input', someListenerAddedEarlier);
+bulker('input').off('input', someListenerAddedEarlier);
 ```
-
-### Psst!
-If you want to separate logic from presentation (i.e. not to use a `button` selector for both styling and scripting), you can check [em](https://github.com/evenfrost/em). 
