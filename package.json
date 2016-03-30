@@ -1,7 +1,13 @@
 {
   "name": "bulker",
   "version": "0.0.5",
+  "description": "Query a set of HTML elements and perform bulk manipulations with it",
   "author": "evenfrost <evenfrosty@gmail.com>",
+  "keywords": [
+    "dom",
+    "query",
+    "selector"
+  ],
   "directories": {
     "lib": "build"
   },
@@ -9,7 +15,11 @@
   "repository": {
     "git": "https://github.com/evenfrost/bulker"
   },
+  "bugs": {
+    "url": "https://github.com/evenfrost/bulker/issues"
+  },
   "license": "MIT",
+  "homepage":"https://github.com/evenfrost/bulker",
   "scripts": {
     "clean": "rimraf build",
     "dev": "babel source --out-dir build -s true && uglifyjs --in-source-map build/bulker.js.map --screw-ie8 -o build/bulker.js --source-map build/bulker.js.map build/bulker.js",
