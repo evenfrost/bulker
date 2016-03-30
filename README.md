@@ -2,6 +2,17 @@
 
 Query a set of HTML elements and perform bulk manipulations with it.
 
+### Installation and Usage
+Run
+```sh
+npm install bulker
+```
+and then use in code:
+```javascript
+import bulker from 'bulker';
+// bulker() is ready
+```
+
 ### Example
 Pass any number of arguments to `bulker`. Any combination of `NodeList`, `HTMLElement` or a selector string is acceptable (including deeply nested arrays), other entities will be ignored.
 ```html
@@ -36,19 +47,6 @@ bulker('section > span', 'div, h1', ['input', 'button'])
 // methods are chainable
 bulker('span').set('textContent', 'xyz').get('textContent');
 // the sample above sets text of <span>s to 'xyz'and returns ['xyz', 'xyz', 'xyz'] as result
-```
-
-### Installation and usage
-bulker currently can be installed via [jspm](http://jspm.io/) only.
-
-Run
-```sh
-jspm install bulker=github:evenfrost/bulker
-```
-and then use in code:
-```javascript
-import bulker from 'bulker';
-// bulker() is ready
 ```
 
 ### Methods
