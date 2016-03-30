@@ -5,7 +5,7 @@
   "directories": {
     "lib": "build"
   },
-  "main": "bulker.js",
+  "main": "build/bulker.js",
   "repository": {
     "git": "https://github.com/evenfrost/bulker"
   },
