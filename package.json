@@ -9,6 +9,7 @@
   "repository": {
     "git": "https://github.com/evenfrost/bulker"
   },
+  "license": "MIT",
   "scripts": {
     "clean": "rimraf build",
     "dev": "babel source --out-dir build -s true && uglifyjs --in-source-map build/bulker.js.map --screw-ie8 -o build/bulker.js --source-map build/bulker.js.map build/bulker.js",

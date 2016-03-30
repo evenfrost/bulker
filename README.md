@@ -49,7 +49,7 @@ bulker('span').set('textContent', 'xyz').get('textContent');
 // the sample above sets text of <span>s to 'xyz'and returns ['xyz', 'xyz', 'xyz'] as result
 ```
 
-### Methods
+## Methods
 All methods are run on the html sample from [Example](#example) section.
 
 #### get
@@ -90,3 +90,6 @@ Removes a listener from each element in bulk.
 ```javascript
 bulker('input').off('input', someListenerAddedEarlier);
 ```
+
+## License
+MIT
