@@ -6,7 +6,8 @@
   "keywords": [
     "dom",
     "query",
-    "selector"
+    "selector",
+    "element"
   ],
   "directories": {
     "lib": "build"
