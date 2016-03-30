@@ -1,10 +1,11 @@
 class Bulker {
   constructor(entities) {
-    let elements = [];
+    this.elements = [];
+    this.selectors = [];
 
     const parse = (entity) => {
-      if (entity instanceof HTMLElement && elements.indexOf(entity) === -1) {
-        elements.push(entity);
+      if (entity instanceof HTMLElement && this.elements.indexOf(entity) === -1) {
+        this.elements.push(entity);
       } else if (entity instanceof NodeList) {
         for (const element of Array.from(entity)) {
           parse(element);
@@ -14,19 +15,21 @@ class Bulker {
           parse(element);
         }
       } else if (typeof entity === 'string') {
+        if (this.selectors.indexOf(entity) === -1) {
+          this.selectors.push(entity);
+        }
+
         for (const element of Array.from(document.querySelectorAll(entity))) {
           parse(element);
         }
       } else if (entity instanceof Bulker) {
-        elements = elements.concat(entity.elements);
+        this.elements = this.elements.concat(entity.elements);
       }
     };
 
     for (const entity of entities) {
       parse(entity);
     }
-
-    this.elements = elements;
   }
 
   /**
