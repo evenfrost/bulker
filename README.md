@@ -1,6 +1,6 @@
 # bulker
 
-Query a set of HTML elements and perform bulk manipulations with it.
+Perform bulk manipulations with DOM elements.
 
 ### Installation and Usage
 Run
