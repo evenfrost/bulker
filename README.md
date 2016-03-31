@@ -77,19 +77,5 @@ bulker('div').call('insertAdjacentHTML', 'beforeend', '<span>I am inserted into 
 // puts a <span> in all <div>s
 ```
 
-#### on
-Adds a listener on each element in bulk.
-```javascript
-bulker('input').on('input', event => bulker('div').set('textContent', event.target.value));
-
-// updates text in <div>s when typing in <input> field
-```
-
-#### off
-Removes a listener from each element in bulk.
-```javascript
-bulker('input').off('input', someListenerAddedEarlier);
-```
-
 ## License
 MIT

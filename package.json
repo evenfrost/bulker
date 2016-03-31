@@ -1,6 +1,6 @@
 {
   "name": "bulker",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Perform bulk manipulations with DOM elements",
   "author": "evenfrost <evenfrosty@gmail.com>",
   "keywords": [
