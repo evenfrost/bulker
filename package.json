@@ -21,7 +21,7 @@
     "url": "https://github.com/evenfrost/bulker/issues"
   },
   "license": "MIT",
-  "homepage":"https://github.com/evenfrost/bulker",
+  "homepage": "https://github.com/evenfrost/bulker",
   "scripts": {
     "clean": "rimraf build",
     "dev": "babel source --out-dir build -s true && uglifyjs --in-source-map build/bulker.js.map --screw-ie8 -o build/bulker.js --source-map build/bulker.js.map build/bulker.js",
@@ -34,8 +34,11 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.6.5",
+    "babel-eslint": "^6.0.2",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-stage-1": "^6.5.0",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
     "rimraf": "^2.5.2",
     "uglify-js": "^2.6.2",
     "watch": "^0.17.1"
