@@ -1,35 +1,56 @@
 class Bulker {
-  constructor(entities) {
-    this.elements = [];
-    this.selectors = [];
+  /**
+   * @type {Array} Stores all methods that need
+   *               to be called on new bulker elements
+   *               in the form of { name: 'method', args: [arguments]}.
+   */
+  shareableMethods = [];
 
-    const parse = (entity) => {
-      if (entity instanceof HTMLElement && this.elements.indexOf(entity) === -1) {
-        this.elements.push(entity);
-      } else if (entity instanceof NodeList) {
-        for (const element of Array.from(entity)) {
-          parse(element);
-        }
-      } else if (entity instanceof Array) {
-        for (const element of entity) {
-          parse(element);
-        }
-      } else if (typeof entity === 'string') {
-        if (this.selectors.indexOf(entity) === -1) {
-          this.selectors.push(entity);
-        }
+  /**
+   * Observes DOM changes and updates bulker instances accordingly.
+   */
+  static observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      Array.from(mutation.addedNodes)
+        .forEach(node => {
+          const bulker = node.matches &&
+            Bulker.instances.find(instance => node.matches(instance.selector));
 
-        for (const element of Array.from(document.querySelectorAll(entity))) {
-          parse(element);
-        }
-      } else if (entity instanceof Bulker) {
-        this.elements = this.elements.concat(entity.elements);
-      }
-    };
+          if (bulker) {
+            bulker.elements.push(node);
+            for (const shareableMethod of bulker.shareableMethods) {
+              if (node[shareableMethod.name]) {
+                node[shareableMethod.name](...shareableMethod.args);
+              }
+            }
+          }
+        });
 
-    for (const entity of entities) {
-      parse(entity);
+      Array.from(mutation.removedNodes)
+        .forEach(node => {
+          const bulker = node.matches &&
+            Bulker.instances.find(instance => node.matches(instance.selector));
+
+
+          if (bulker) {
+            bulker.elements.splice(bulker.elements.indexOf(node), 1);
+          }
+        });
+    });
+  });
+
+  // instances store
+  static instances = [];
+  // list of shareable methods by name
+  static shareableMethods = ['addEventListener'];
+
+  constructor(selector) {
+    if (typeof selector !== 'string') {
+      throw new TypeError('First argument must must be a string containing one or more CSS selectors separated by commas.');
     }
+
+    this.selector = selector;
+    this.elements = Array.from(document.querySelectorAll(this.selector));
   }
 
   /**
@@ -79,11 +100,27 @@ class Bulker {
       }
     }
 
+    if (Bulker.shareableMethods.indexOf(method) > -1) {
+      this.shareableMethods.push({
+        name: method,
+        args,
+      });
+    }
+
     return this;
   }
 
 }
 
-export default function (...args) {
-  return new Bulker(args);
+Bulker.observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+});
+
+export default function (selector) {
+  const bulker = new Bulker(selector);
+
+  Bulker.instances.push(bulker);
+
+  return bulker;
 }
