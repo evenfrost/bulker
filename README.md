@@ -21,7 +21,7 @@ divs
   // (elements matching the selector that are added to the DOM after this
   // will also have the listener on them)
   .call('addEventListener', 'click', event => console.log(event));
-  // returns elements text in array (if there are multiple elements) or a string (if single)
+  // get elements text in array (if there are multiple elements) or a string (if single)
   .get('textContent');
 ```
 
