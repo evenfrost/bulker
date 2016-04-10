@@ -46,7 +46,7 @@ class Bulker {
 
   constructor(selector) {
     if (typeof selector !== 'string') {
-      throw new TypeError('First argument must must be a string containing one or more CSS selectors separated by commas.');
+      throw new TypeError('First argument must be a string containing one or more CSS selectors separated by commas.');
     }
 
     this.selector = selector;
