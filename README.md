@@ -2,6 +2,8 @@
 
 Query a [live](https://www.w3.org/TR/dom/#concept-collection-live) DOM collection and perform bulk manipulations with its elements.
 
+Bulker queries are live and backed by [MutationObserver](https://developer.mozilla.org/en/docs/Web/API/MutationObserver). This means that on any DOM change underlying collections are changed accordingly (and all [listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) are updated as well).
+
 ## Installation
 ```sh
 npm install bulker
