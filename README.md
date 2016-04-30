@@ -1,8 +1,8 @@
 # bulker
 
-Query a [live](https://www.w3.org/TR/dom/#concept-collection-live) DOM collection and perform bulk manipulations with its elements.
+Query a DOM collection and perform bulk manipulations with its elements.
 
-Bulker queries are live and backed by [MutationObserver](https://developer.mozilla.org/en/docs/Web/API/MutationObserver). This means that on any DOM change underlying bulker collections are changed accordingly (and all [listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) are updated as well).
+Bulker queries are [live](https://www.w3.org/TR/dom/#concept-collection-live) and backed by [MutationObserver](https://developer.mozilla.org/en/docs/Web/API/MutationObserver). This means that on any DOM change underlying bulker collections are changed accordingly (and all [listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) are updated as well).
 
 ## Installation
 ```sh
