@@ -27,7 +27,7 @@ divs
   .get('textContent');
 ```
 
-## Advanced Example
+## Todo Example
 ```html
 
 <h2>todos</h2>
